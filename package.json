@@ -1,0 +1,24 @@
+{
+  "name": "newsworkf",
+  "version": "1.0.0",
+  "description": "1. gulp init in your pwd   1. - npm init to creat package.json file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuelWeb/gulp_newsWorkflow.git"
+  },
+  "author": "macfly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuelWeb/gulp_newsWorkflow/issues"
+  },
+  "homepage": "https://github.com/manuelWeb/gulp_newsWorkflow#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-slim": "^0.3.0"
+  }
+}

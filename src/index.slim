@@ -1,0 +1,21 @@
+/ == Slim::Template.new('var/var.slim').render
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+head
+  meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/
+  title Document
+body
+  table
+
+    tr
+      / == Slim::Template.new('_header.slim').render
+      td text1-01
+      td text2-01
+      td text3-01
+    tr
+      td
+        | hello world
+    tf
+      td
+        p "#@'&"ça marche enfin :D
+
