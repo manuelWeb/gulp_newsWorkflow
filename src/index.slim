@@ -1,4 +1,6 @@
-/ == Slim::Template.new('var/var.slim').render
+/ == Slim::Template.new('./var/var.slim').render
+- testVarlocal = 'ma var local ci dessus dans ce doc';
+- $varGlobale = " et ma var global... suis global mouaw ;)";
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
 head
@@ -8,14 +10,25 @@ body
   table
 
     tr
-      / == Slim::Template.new('_header.slim').render
+      / == Slim::Template.new('partial/_header.slim').render
       td text1-01
       td text2-01
       td text3-01
     tr
       td
         | hello world
-    tf
+    tr
       td
-        p "#@'&"ça marche enfin :D
-
+        p "#@'&"ça marche enfin :D enfin ...
+    tr
+      td
+        p #{testVarlocal}
+    tr
+      td
+        p == $varGlobale
+    tr
+      td
+        / p == Slim::Template.new('var.slim').render
+        / p == Slim::Engine.new(File.read('var/var.slim')).render
+        / p == @@include('var/var.slim')
+        p == @@include('var/var.slim')
