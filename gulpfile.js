@@ -1,7 +1,8 @@
 // première étape consiste à le requérir (require)
 var gulp = require('gulp');
-// slim
+// fileinclude
 var fileinclude = require('gulp-file-include');
+// slim
 var slim = require("gulp-slim");
 // var slimr = require ("slim/include");
 // BS
@@ -34,7 +35,7 @@ gulp.task('fileinclude', function() {
   gulp.src('index.slim')
     .pipe(fileinclude({
       prefix: '@@',
-      basepath: '@file'
+      basepath: 'src'
     }))
     .pipe(gulp.dest('render'))
     .pipe(browserSync.reload({
@@ -45,7 +46,8 @@ gulp.task('fileinclude', function() {
 gulp.task('slim', function () {
   return gulp.src('./src/*.slim')
   .pipe(slim({
-    pretty: true
+    pretty: true,
+    require: 'slim/include'
   }))
   .pipe(gulp.dest('render'))
   .pipe(browserSync.reload({
