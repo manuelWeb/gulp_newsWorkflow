@@ -12,19 +12,7 @@ head
   css:
     body {font-family: arial,sans-serif;}
 body
-  / | @@include('./var.slim')
   table
-    tr
-      / == Slim::Template.new('partial/_header.slim').render
-      td text1-01
-      td text2-01
-      td text3-01
-    tr
-      td
-        | hello honey
-    tr
-      td
-        p "#@'&"ça marche enfin :D
     tr
       td
         p #{testVarlocal}
@@ -33,15 +21,11 @@ body
         p == $varGlobale
     tr
       td
-        p == $var 
-        / Tilt.new['var.slim'].render
-        / p == Slim::Engine.new(File.read('var/var.slim')).render
-        / p == @@include('var/var.slim')
-        / p == require 'var/var.slim'
-        / p == include 'var/var.slim'
-        / p == include 'var.slim'
+        p #{$var[0]} > #{$var[1]}
         p
-         | gros souci import
-         strong .slim partial !
+         | import ok
+         strong  .slim partial !
     tr
-       == Slim::Template.new('./src/partial/_header.slim').render
+       == Slim::Template.new('src/partial/_header.slim').render
+    tr
+       == Slim::Template.new('src/partial/_content.slim').render
