@@ -3,7 +3,7 @@
 ==================================================*/
 
 /*----------  dependance  > package.json > node_modules  ----------*/
-var gulp    = require('gulp'), 
+var gulp    = require('gulp'),
 browserSync = require('browser-sync'),
 slim        = require("gulp-slim"),
 sass        = require('gulp-sass'),
@@ -60,7 +60,7 @@ gulp.task(
   'watch',
   ['browserSync', 'sass', 'slim', 'premailer'],
   function () {
-  gulp.watch('src/scss/**/*.scss',['sass'],['premailer']);
-  gulp.watch('src/**/*.slim',['slim'],['premailer']);
+  gulp.watch('src/scss/**/*.scss',['sass']);
+  gulp.watch('src/**/*.slim',['slim']);
   gulp.watch('render/html/index.html',['premailer']);
 })
