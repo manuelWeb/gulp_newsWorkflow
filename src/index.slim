@@ -1,6 +1,3 @@
-/ == Slim::Template.new('./var/var.slim').render
- / == require 'slim/include';
-/ include 'var/var.slim'
 == Slim::Template.new('./src/var/var.slim').render
 - testVarlocal = 'ma var local ci dessus dans ce doc';
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -11,6 +8,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
     css:
       body {font-family: arial,sans-serif;}
   body
+    h1 project : gulp_newsWorkflow (branch:test1)
     table border="1"
       tr
         td align="center"
@@ -32,4 +30,4 @@ html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       tr
          == Slim::Template.new('src/partial/_header.slim').render
       tr
-         == Slim::Template.new('src/partial/_content.slim').render 
+         == Slim::Template.new('src/partial/_content.slim').render

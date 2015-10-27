@@ -1,16 +1,19 @@
-// première étape consiste à le requérir (require)
-var gulp = require('gulp');
-// fileinclude
-// var fileinclude = require('gulp-file-include');
-// slim
-var slim = require("gulp-slim");
-// var slimr = require ("slim/include");
-// BS
-var browserSync = require('browser-sync');
-// Requires the gulp-sass plugin
-var sass = require('gulp-sass');
+/*==================================================
+=            npm install gulp --sav-dev            =
+==================================================*/
 
-// tache browser-sync
+/*----------  dependance  > package.json > node_modules  ----------*/
+var gulp    = require('gulp'), 
+browserSync = require('browser-sync'),
+slim        = require("gulp-slim"),
+sass        = require('gulp-sass');
+
+
+/*=================================
+=            task init            =
+=================================*/
+
+// browser-sync task
 gulp.task('browserSync',function () {
   browserSync({
     server: {
@@ -19,9 +22,7 @@ gulp.task('browserSync',function () {
   })
 })
 
-// tache init
-//
-// tache sass
+// sass task
 gulp.task('sass', function() {
   return gulp.src('src/scss/**/*.scss')
   .pipe(sass())
@@ -30,24 +31,12 @@ gulp.task('sass', function() {
     stream: true
   }))
 })
-// import partial
-// gulp.task('fileinclude', function() {
-//   gulp.src('index.slim')
-//     .pipe(fileinclude({
-//       prefix: '@@',
-//       basepath: 'src'
-//     }))
-//     .pipe(gulp.dest('render'))
-//     .pipe(browserSync.reload({
-//     stream: true
-//   }))
-// });
-// tache slim
+
+// slim task
 gulp.task('slim', function () {
-  return gulp.src('./src/*.slim')
+  return gulp.src('./src/**/*.slim')
   .pipe(slim({
-    pretty: true,
-    require: 'slim/include'
+    pretty: true // ,require: 'slim/include'
   }))
   .pipe(gulp.dest('render'))
   .pipe(browserSync.reload({
@@ -55,15 +44,11 @@ gulp.task('slim', function () {
   }))
 });
 
-// lancement
-//
-// gulp.task('watch', ['browserSync', 'fileinclude', 'sass', 'slim'],function () {
-//   gulp.watch('src/index.slim',['fileinclude']);
-//   gulp.watch('src/scss/**/*.scss',['sass']);
-//   gulp.watch('src/*.slim',['slim']);
-// })
-gulp.task('watch', ['browserSync', 'sass', 'slim'],function () {
-  // gulp.watch('src/index.slim',['fileinclude']);
+// lancement > fonction watch
+gulp.task(
+  'watch',
+  ['browserSync', 'sass', 'slim'],
+  function () {
   gulp.watch('src/scss/**/*.scss',['sass']);
   gulp.watch('src/*.slim',['slim']);
 })
