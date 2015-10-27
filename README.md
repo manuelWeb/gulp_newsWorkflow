@@ -1,5 +1,8 @@
 # gulp_newsWorkflow
 ________
+
+### dernière branch
+ **branch test2 premailer + watch scss + partial = OK ;)**
 ### install step by step
 #### domoti workflow > news loco + cat
 
