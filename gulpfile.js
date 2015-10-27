@@ -58,9 +58,9 @@ gulp.task('premailer', function () {
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['browserSync', 'sass', 'slim', 'premailer'],
+  ['browserSync', 'slim', 'premailer', 'sass'],
   function () {
-  gulp.watch('src/scss/**/*.scss',['sass']);
-  gulp.watch('src/**/*.slim',['slim']);
+  gulp.watch('src/scss/**/*.scss',['sass'],['premailer']);
+  gulp.watch('src/**/*.slim',['slim'],['premailer']);
   gulp.watch('render/html/index.html',['premailer']);
 })
