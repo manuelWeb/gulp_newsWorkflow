@@ -9,8 +9,11 @@ body {
   font-size: 28px;
   color: red; }
 
+.color1 {
+  color: #333; }
+
 .bg_color1 {
-  background-color: #00ffff; }
+  background-color: pink; }
 
 .bg_color2 {
   background-color: #ffff00; }
