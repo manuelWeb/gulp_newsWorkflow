@@ -1,41 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"></html>
-<head>
-  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-  <title>Gulp et ses amis > browserSync/sass/sliom/premailer</title>
-  <style type="text/css">
-    body {font-family: arial,sans-serif;}
-  </style>
-</head>
-<body>
-  <table>
-    <tr>
-      <td>
-        <p>
-          ma var local ci dessus dans ce doc
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>
-          et ma var global... suis global mouaw ;)
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>
-          contenu de var/var.slim $var > valeur $var
-        </p>
-        <p>
-          import ok<strong> .slim partial !</strong>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <tr>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
+    <title>Gulp et ses amis > browserSync/sass/slim/premailer</title>
+    <style type="text/css">
+      body {font-family: arial,sans-serif;}
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td align="center">
+          <p>
+            ma var local ci dessus dans ce doc
+          </p>
+        </td>
+        <td align="center">
+          <p>
+            et ma var global... suis global mouaw ;)
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" colspan="2">
+          <p>
+            <a href="http://www.tempsl.fr"><strong>Test link TL</strong></a>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <p>
+            contenu de #{$var[0]} : http://www.tempsl.fr
+          </p>
+        </td>
+        <td align="center">
+          <p>
+            contenu de #{$var[1]} : Test link TL
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
           <table>
             <tr>
               <td>
@@ -52,12 +58,10 @@
               </td>
             </tr>
           </table>
-        </tr>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <tr>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
           <table>
             <tr>
               <td>
@@ -81,8 +85,8 @@
               </td>
             </tr>
           </table>
-        </tr>
-      </td>
-    </tr>
-  </table>
-</body>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
