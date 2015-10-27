@@ -60,7 +60,7 @@ gulp.task(
   'watch',
   ['browserSync', 'sass', 'slim', 'premailer'],
   function () {
-  gulp.watch('src/scss/**/*.scss',['sass'],['premailer']);
-  gulp.watch('src/**/*.slim',['slim'],['premailer']);
+  gulp.watch('src/scss/**/*.scss',['sass']);
+  gulp.watch('src/**/*.slim',['slim']);
   gulp.watch('render/html/index.html',['premailer']);
 })
