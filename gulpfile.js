@@ -3,7 +3,7 @@
 ==================================================*/
 
 /*----------  dependance  > package.json > node_modules  ----------*/
-var gulp    = require('gulp'), 
+var gulp    = require('gulp'),
 browserSync = require('browser-sync'),
 slim        = require("gulp-slim"),
 sass        = require('gulp-sass'),
