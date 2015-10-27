@@ -6,7 +6,8 @@
 var gulp    = require('gulp'), 
 browserSync = require('browser-sync'),
 slim        = require("gulp-slim"),
-sass        = require('gulp-sass');
+sass        = require('gulp-sass'),
+premailer   = require('gulp-premailer');
 
 
 /*=================================
@@ -34,21 +35,32 @@ gulp.task('sass', function() {
 
 // slim task
 gulp.task('slim', function () {
-  return gulp.src('./src/**/*.slim')
+  return gulp.src('src/**/*.slim')
   .pipe(slim({
     pretty: true // ,require: 'slim/include'
   }))
-  .pipe(gulp.dest('render'))
+  .pipe(gulp.dest('render/html'))
   .pipe(browserSync.reload({
     stream: true
-  }))
+  }));
+});
+
+// premailer task
+gulp.task('premailer', function () {
+  gulp.src('render/html/index.html')
+  .pipe(premailer())
+  .pipe(gulp.dest('render/'))
+  .pipe(browserSync.reload({
+    stream: true
+  }));
 });
 
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['browserSync', 'sass', 'slim'],
+  ['browserSync', 'sass', 'slim', 'premailer'],
   function () {
-  gulp.watch('src/scss/**/*.scss',['sass']);
-  gulp.watch('src/*.slim',['slim']);
+  gulp.watch('src/scss/**/*.scss',['sass'],['premailer']);
+  gulp.watch('src/**/*.slim',['slim'],['premailer']);
+  gulp.watch('render/html/index.html',['premailer']);
 })
