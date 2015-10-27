@@ -60,14 +60,24 @@ gulp.task('premailer', function () {
     stream: true
   }));
 });
+// premailerBV task
+gulp.task('premailerBV', function () {
+  gulp.src('render/html/BV/index.html')
+  .pipe(premailer())
+  .pipe(gulp.dest('render/html/BV/html/'))
+  .pipe(browserSync.reload({
+    stream: true
+  }));
+});
 
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['slim', 'browserSync', 'premailer', 'sass','sass2'],
+  ['slim', 'browserSync', 'premailer', 'sass','sass2','premailerBV'],
   function () {
-  gulp.watch('src/scss/**/*.scss',['sass']);
-  gulp.watch('src/**/*.slim',['slim'],['premailer']);
+  gulp.watch('src/scss/*.scss',['sass']);
+  gulp.watch('src/**/*.slim',['slim']);
   gulp.watch('render/html/index.html',['premailer']);
-  // gulp.watch('src/BV/scss/*.scss',['sass2']);
+  gulp.watch('src/BV/scss/*.scss',['sass2']);
+  gulp.watch('render/html/BV/index.html',['premailerBV']);
 })
