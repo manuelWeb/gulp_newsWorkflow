@@ -23,7 +23,7 @@ gulp.task('browserSync',function () {
   })
 })
 
-// sass task
+// sass1 task
 gulp.task('sass', function() {
   return gulp.src('src/scss/**/*.scss')
   .pipe(sass())
@@ -31,6 +31,12 @@ gulp.task('sass', function() {
   .pipe(browserSync.reload({
     stream: true
   }))
+})
+// sass2 task
+gulp.task('sass2', function() {
+  return gulp.src('src/BV/scss/*.scss')
+  .pipe(sass())
+  .pipe(gulp.dest('render/html/BV/css'))
 })
 
 // slim task
@@ -58,9 +64,10 @@ gulp.task('premailer', function () {
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['browserSync', 'slim', 'premailer', 'sass'],
+  ['slim', 'browserSync', 'premailer', 'sass','sass2'],
   function () {
-  gulp.watch('src/scss/**/*.scss',['sass'],['premailer']);
+  gulp.watch('src/scss/**/*.scss',['sass']);
   gulp.watch('src/**/*.slim',['slim'],['premailer']);
   gulp.watch('render/html/index.html',['premailer']);
+  // gulp.watch('src/BV/scss/*.scss',['sass2']);
 })
