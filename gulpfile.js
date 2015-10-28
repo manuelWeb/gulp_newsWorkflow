@@ -55,25 +55,19 @@ gulp.task('slim', function () {
 gulp.task('premailer', function () {
   gulp.src('render/html/index.html')
   .pipe(premailer())
-  .pipe(gulp.dest('render/'))
-  .pipe(browserSync.reload({
-    stream: true
-  }));
+  .pipe(gulp.dest('render/'));
 });
 // premailerBV task
 gulp.task('premailerBV', function () {
   gulp.src('render/html/BV/index.html')
   .pipe(premailer())
   .pipe(gulp.dest('render/html/BV/html/'))
-  .pipe(browserSync.reload({
-    stream: true
-  }));
 });
 
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['slim', 'browserSync', 'premailer', 'sass','sass2','premailerBV'],
+  ['slim', 'premailer', 'sass','sass2','premailerBV', 'browserSync'],
   function () {
   gulp.watch('src/scss/*.scss',['sass']);
   gulp.watch('src/**/*.slim',['slim']);
