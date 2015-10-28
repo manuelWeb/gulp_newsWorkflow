@@ -8,6 +8,9 @@ ________
 
 -  voir les [infos](#infos)
 
+## TODO
+- revoir gulpfil.js > browser-sync à utiliser avec partialité mais rajouter **le scss dans la boucle au moins pour master...**.
+- voir npm markdown to html file dans chaques dossiers domoti
 ## init
 
 1. init node package modul in your pwd
