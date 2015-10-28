@@ -2,7 +2,7 @@
 ________
 
 ### dernière branch
- **branch test2 premailer + watch scss + partial = OK ;)**
+ **branch multidossier premailer + watch scss + partial = OK ;)**
 ### install step by step
 #### domoti workflow > news loco + cat
 
