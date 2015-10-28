@@ -23,7 +23,7 @@ gulp.task('browserSync',function () {
   })
 })
 
-// sass1 task
+// sass task
 gulp.task('sass', function() {
   return gulp.src('src/scss/**/*.scss')
   .pipe(sass())
@@ -32,13 +32,6 @@ gulp.task('sass', function() {
     stream: true
   }))
 })
-// sass2 task
-gulp.task('sass2', function() {
-  return gulp.src('src/BV/scss/*.scss')
-  .pipe(sass())
-  .pipe(gulp.dest('render/html/BV/css'))
-})
-
 // slim task
 gulp.task('slim', function () {
   return gulp.src('src/**/*.slim')
@@ -50,7 +43,6 @@ gulp.task('slim', function () {
     stream: true
   }));
 });
-
 // premailer task
 gulp.task('premailer', function () {
   gulp.src('render/html/index.html')
@@ -60,15 +52,20 @@ gulp.task('premailer', function () {
     stream: true
   }));
 });
+
+// BV
 // premailerBV task
 gulp.task('premailerBV', function () {
   gulp.src('render/html/BV/index.html')
   .pipe(premailer())
-  .pipe(gulp.dest('render/html/BV/html/'))
-  .pipe(browserSync.reload({
-    stream: true
-  }));
+  .pipe(gulp.dest('render/html/BV/html/'));
 });
+// sass2 task
+gulp.task('sass2', function() {
+  return gulp.src('src/BV/scss/*.scss')
+  .pipe(sass())
+  .pipe(gulp.dest('render/html/BV/css'))
+})
 
 // lancement > fonction watch
 gulp.task(
@@ -78,6 +75,7 @@ gulp.task(
   gulp.watch('src/scss/*.scss',['sass']);
   gulp.watch('src/**/*.slim',['slim']);
   gulp.watch('render/html/index.html',['premailer']);
+  // BV
   gulp.watch('src/BV/scss/*.scss',['sass2']);
   gulp.watch('render/html/BV/index.html',['premailerBV']);
 })

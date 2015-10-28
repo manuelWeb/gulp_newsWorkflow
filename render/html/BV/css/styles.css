@@ -7,17 +7,17 @@ body {
 
 .emphas {
   font-size: 28px;
-  color: blue; }
+  color: pink; }
 
 .emphas2 {
-  font-size: 16px;
-  color: #ff00ff; }
+  font-size: 28px;
+  color: deeppink; }
 
 .bg_color1 {
   background-color: #00ffff; }
 
 .bg_color2 {
-  background-color: #ffff00; }
+  background-color: #00ffff; }
 
 .bd1px {
   border: 1px solid green; }
