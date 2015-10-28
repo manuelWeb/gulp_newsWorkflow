@@ -1,3 +1,4 @@
+
 /*==================================================
 =            npm install gulp --sav-dev            =
 ==================================================*/
@@ -8,6 +9,13 @@ browserSync = require('browser-sync'),
 slim        = require("gulp-slim"),
 sass        = require('gulp-sass');
 
+/*=================================
+=            variables            =
+=================================*/
+var d = new Date();
+gulp.task('date_time', function() {
+    console.log(d);
+});
 
 /*=================================
 =            task init            =
@@ -34,7 +42,7 @@ gulp.task('sass', function() {
 
 // slim task
 gulp.task('slim', function () {
-  return gulp.src('./src/**/*.slim')
+  return gulp.src('src/*.slim')
   .pipe(slim({
     pretty: true // ,require: 'slim/include'
   }))
@@ -47,8 +55,14 @@ gulp.task('slim', function () {
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['browserSync', 'sass', 'slim'],
-  function () {
+  ['browserSync', 'sass', 'slim'], function () {
   gulp.watch('src/scss/**/*.scss',['sass']);
   gulp.watch('src/*.slim',['slim']);
 })
+
+/*============================
+=            test            =
+============================*/
+
+
+/*=====  End of test  ======*/
