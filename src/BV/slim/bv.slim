@@ -1,0 +1,32 @@
+== Slim::Template.new('./src/BV/var/var.slim').render
+- testVarlocal = 'ma var local ci dessus dans ce doc';
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  head
+    meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/
+    link href="css/styles.css" rel="stylesheet" type="text/css"/
+    title BV
+  body
+    h1.emphas2 BV premailer ?
+    table border="1"
+      tr
+        td align="center"
+          p #{testVarlocal}
+        td align="center"
+          p #{$varGlobale}
+      tr
+        td colspan="2" align="center"
+          / p #{$var[0]} > #{$var[1]}
+          p
+           a href== $var[0]
+            strong.emphas  == $var[1]
+      tr
+        td align="center"
+          p
+            | contenu de \#{$var[0]} : #{$var[0]}
+        td align="center"
+          p contenu de \#{$var[1]} : #{$var[1]}
+      tr
+         == Slim::Template.new('src/BV/partial/_header.slim').render
+      tr
+         == Slim::Template.new('src/BV/partial/_content.slim').render
