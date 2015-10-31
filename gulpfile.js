@@ -67,7 +67,7 @@ gulp.task('sass2', function() {
 // lancement > fonction watch
 gulp.task(
   'watch',
-  ['slim', 'premailer', 'sass','sass2','premailerBV', 'browserSync'],
+  ['browserSync', 'slim', 'sass', 'sass2', 'premailerBV', 'premailer'],
   function () {
   gulp.watch('src/scss/*.scss',['sass']);
   gulp.watch('src/**/*.slim',['slim']);
