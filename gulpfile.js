@@ -10,14 +10,13 @@ slim        = require("gulp-slim"),
 sass        = require('gulp-sass'),
 premailer   = require('gulp-premailer'),
 path        = require('path'),
+replace     = require('gulp-replace-path'),
 fs          = require('fs'),
 rename      = require('gulp-rename'),
 using       = require('gulp-using'),
 clean       = require('gulp-clean');
 // imgmin    = require('gulp-imagemin'),
 
-// var dist = ( 'dist/' );
-// source and distribution folders
 var  src = 'src/';
 var dist = path.resolve( 'render/' );
 /*=================================
@@ -60,6 +59,7 @@ gulp.task('sass', function() {
   //   stream: true
   // }))
 })
+
 // slim task
 gulp.task('slim', function () {
   return gulp.src(src+'**/slim/*.slim')

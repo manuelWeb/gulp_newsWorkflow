@@ -24,6 +24,7 @@
     "gulp-imagemin": "^2.4.0",
     "gulp-premailer": "^0.4.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace-path": "^0.4.0",
     "gulp-sass": "^2.0.4",
     "gulp-slim": "^0.3.0",
     "gulp-using": "0.0.1",
