@@ -54,7 +54,7 @@ gulp.task('sass', function() {
   // .pipe(gulp.dest('render'))
   // .pipe(gulp.dest(src))
   // .pipe(gulp.dest(dist+'css'))
-  .pipe(gulp.dest('css/'))
+  .pipe(gulp.dest('render'))
   .pipe(using())
   // .pipe(browserSync.reload({
   //   stream: true
