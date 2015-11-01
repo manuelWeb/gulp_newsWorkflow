@@ -1,28 +1,27 @@
 /*==================================================
 =            npm install gulp --sav-dev            =
 ==================================================*/
-
+// to disable>dest path replace fs
 /*----------  dependance  > package.json > node_modules  ----------*/
 var gulp    = require('gulp'),
-browserSync = require('browser-sync'),
 dest        = require('gulp-dest'),
-slim        = require("gulp-slim"),
-sass        = require('gulp-sass'),
-premailer   = require('gulp-premailer'),
 path        = require('path'),
 replace     = require('gulp-replace-path'),
 fs          = require('fs'),
+browserSync = require('browser-sync'),
+slim        = require("gulp-slim"),
+sass        = require('gulp-sass'),
+premailer   = require('gulp-premailer'),
 rename      = require('gulp-rename'),
 using       = require('gulp-using'),
 clean       = require('gulp-clean');
 // imgmin    = require('gulp-imagemin'),
 
+// src & output
 var  src = 'src/';
-var dist = path.resolve( 'render/' );
 /*=================================
 =            task init            =
 =================================*/
-
 // browser-sync task
 // gulp.task('browserSync',function () {
 //   browserSync({
@@ -38,21 +37,11 @@ gulp.task('img', function() {
   // .pipe(npm())
   .pipe(gulp.dest('render'))
 })
-// cp css folder
-gulp.task('cssfold', function() {
-  return gulp.src(src+'**/css/*.css')
-  // .pipe(npm())
-  .pipe(gulp.dest('render'))
-})
+
 // sass task
 gulp.task('sass', function() {
-  return gulp.src(src+'**/scss/*.scss')//<, {base: './css/'}
+  return gulp.src(src+'**/scss/*.scss')
   .pipe(sass())
-  // .pipe(rename("css/styles.css"))
-  // .pipe(dest(':scss/:name.css', {scss: 'css'})) // dest>render=root
-  // .pipe(gulp.dest('render'))
-  // .pipe(gulp.dest(src))
-  // .pipe(gulp.dest(dist+'css'))
   .pipe(rename(function(path) {
     path.dirname += "/../css";
   }))
@@ -75,6 +64,7 @@ gulp.task('slim', function () {
   //   stream: true
   // }));
 });
+
 // premailer task
 gulp.task('premailer', function () {
   gulp.src('render/**/slim/*.html')
@@ -85,10 +75,9 @@ gulp.task('premailer', function () {
 // lancement > fonction watch
 gulp.task( 'build',['img','slim','sass','premailer'], function() {
   // gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
-  gulp.watch(src+'**/slim/*.slim',['slim','img']);
-  gulp.watch(src+'**/scss/*.scss',['sass']);
+  gulp.watch(src+'**/slim/*.slim',['slim','img','premailer']);
+  gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
   // gulp.watch('render/**/slim/*.html',['premailer']);
-  // gulp.watch('src/**/images/*.scss',['img']);
 });
 
 
