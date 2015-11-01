@@ -53,6 +53,9 @@ gulp.task('sass', function() {
   // .pipe(gulp.dest('render'))
   // .pipe(gulp.dest(src))
   // .pipe(gulp.dest(dist+'css'))
+  .pipe(rename(function(path) {
+    path.dirname += "/../css";
+  }))
   .pipe(gulp.dest('render'))
   .pipe(using())
   // .pipe(browserSync.reload({
