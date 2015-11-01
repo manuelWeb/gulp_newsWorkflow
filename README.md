@@ -1,10 +1,11 @@
 # gulp_newsWorkflow
 ________
-
+## généraliser les divers destinations, rajouter BS sur css et html
+### attention à la queu d'exec
 ## résolution de gulp > relative source paths to relative destination paths
 @see [ici](https://laracasts.com/discuss/channels/general-discussion/gulp-source-and-destination-directories)
-### dernière branch
- **branch simpl5**
+#### dernière branch
+ **>branch simpl7**
 ### install step by step
 #### domoti workflow > news loco + cat
 
