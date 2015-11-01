@@ -22,6 +22,7 @@
     "gulp-clean": "^0.3.1",
     "gulp-dest": "^0.2.3",
     "gulp-imagemin": "^2.4.0",
+    "gulp-newer": "^1.0.0",
     "gulp-premailer": "^0.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace-path": "^0.4.0",
