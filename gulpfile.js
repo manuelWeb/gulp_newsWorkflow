@@ -22,7 +22,7 @@ var  src = 'src/';
 gulp.task('browserSync',function () {
   browserSync({
     server: {
-      baseDir: 'render'
+      baseDir: 'render/BV'
     }
   })
 })
@@ -55,22 +55,26 @@ gulp.task('slim', function () {
     pretty: true
   }))
   .pipe(using())
-  .pipe(gulp.dest('render'))
+  .pipe(gulp.dest('render')) // slim folder
   .pipe(browserSync.reload({
     stream: true
   }))
+  .pipe(rename(function(path) {
+    path.dirname += "/../";
+  }))
+  .pipe(gulp.dest('render')) // html folder
 });
 
 // premailer task
 gulp.task('premailer', function () {
-  gulp.src('render/**/slim/*.html')
+  gulp.src('render/**/html/*.html')
   .pipe(premailer())
   .pipe(gulp.dest('render'));
 });
 
 // lancement > fonction watch
 gulp.task( 'build',['browserSync','img','slim','sass','premailer'], function() {
-  gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
+  // gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
   gulp.watch(src+'**/slim/*.slim',['slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
   // gulp.watch('render/**/slim/*.html',['premailer']);
