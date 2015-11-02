@@ -4,10 +4,6 @@
 // to disable>dest path replace fs
 /*----------  dependance  > package.json > node_modules  ----------*/
 var gulp    = require('gulp'),
-dest        = require('gulp-dest'),
-path        = require('path'),
-replace     = require('gulp-replace-path'),
-fs          = require('fs'),
 browserSync = require('browser-sync'),
 slim        = require("gulp-slim"),
 sass        = require('gulp-sass'),
@@ -23,13 +19,13 @@ var  src = 'src/';
 =            task init            =
 =================================*/
 // browser-sync task
-// gulp.task('browserSync',function () {
-//   browserSync({
-//     server: {
-//       baseDir: 'render/BV/html/'
-//     }
-//   })
-// })
+gulp.task('browserSync',function () {
+  browserSync({
+    server: {
+      baseDir: 'render'
+    }
+  })
+})
 
 // cp img folder
 gulp.task('img', function() {
@@ -60,9 +56,9 @@ gulp.task('slim', function () {
   }))
   .pipe(using())
   .pipe(gulp.dest('render'))
-  // .pipe(browserSync.reload({
-  //   stream: true
-  // }));
+  .pipe(browserSync.reload({
+    stream: true
+  }))
 });
 
 // premailer task
@@ -73,8 +69,8 @@ gulp.task('premailer', function () {
 });
 
 // lancement > fonction watch
-gulp.task( 'build',['img','slim','sass','premailer'], function() {
-  // gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
+gulp.task( 'build',['browserSync','img','slim','sass','premailer'], function() {
+  gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
   gulp.watch(src+'**/slim/*.slim',['slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
   // gulp.watch('render/**/slim/*.html',['premailer']);

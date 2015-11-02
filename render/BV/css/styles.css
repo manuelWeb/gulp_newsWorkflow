@@ -1,0 +1,27 @@
+body {
+  font-family: arial,sans-serif;
+  background-color: brown; }
+
+table {
+  background-color: #fff; }
+
+.test {
+  font-family: georgia,serif;
+  font-size: 18px; }
+
+.emphas {
+  font-size: 28px;
+  color: pink; }
+
+.emphas2 {
+  font-size: 28px;
+  color: deeppink; }
+
+.bg_color1 {
+  background-color: #00ffff; }
+
+.bg_color2 {
+  background-color: #00ffff; }
+
+.bd1px {
+  border: 1px solid green; }
