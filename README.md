@@ -1,5 +1,6 @@
 # gulp_newsWorkflow
 ________
+## todo premailer on FR:root; BS multirender show br s9
 ## généraliser les divers destinations, rajouter BS sur css et html
 ### attention à la queu d'exec
 ## résolution de gulp > relative source paths to relative destination paths
