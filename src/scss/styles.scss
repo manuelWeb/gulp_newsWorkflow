@@ -1,4 +1,11 @@
-body {font-family: arial,sans-serif;}
+body {font-family: arial,sans-serif; background-color: #ddd}
+table {
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
+}
+table table {box-shadow: none;}
+table td table {border: 1px solid gray;}
+table table td {padding: 5px;/* transform: rotate(-5deg)*/}
 .test {font-family: georgia,serif; font-size: 18px;}
 .emphas {font-size: 28px; color: blue;}
 .emphas2 {font-size: 16px; color: #ff00ff;}
@@ -8,3 +15,4 @@ body {font-family: arial,sans-serif;}
 .bleu {background-color: blue;}
 .white {background-color: #fff;}
 .red {background-color: red;}
+// body > table:nth-child(5) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1)

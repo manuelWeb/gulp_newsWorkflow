@@ -1,5 +1,6 @@
 # gulp_newsWorkflow
 ________
+## fusion s10; add autoprefixer; todo path + multiRender
 ## todo premailer on FR:root; BS multirender show br s9
 ## généraliser les divers destinations, rajouter BS sur css et html
 ### attention à la queu d'exec

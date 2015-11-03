@@ -3,14 +3,15 @@
 ==================================================*/
 // to disable>dest path replace fs
 /*----------  dependance  > package.json > node_modules  ----------*/
-var gulp    = require('gulp'),
-browserSync = require('browser-sync'),
-slim        = require("gulp-slim"),
-sass        = require('gulp-sass'),
-premailer   = require('gulp-premailer'),
-rename      = require('gulp-rename'),
-using       = require('gulp-using'),
-clean       = require('gulp-clean');
+var gulp     = require('gulp'),
+browserSync  = require('browser-sync'),
+slim         = require("gulp-slim"),
+sass         = require('gulp-sass'),
+premailer    = require('gulp-premailer'),
+autoprefixer = require('gulp-autoprefixer'),
+rename       = require('gulp-rename'),
+using        = require('gulp-using'),
+clean        = require('gulp-clean');
 // imgmin    = require('gulp-imagemin'),
 
 // src & output
@@ -38,14 +39,14 @@ gulp.task('img', function() {
 gulp.task('sass', function() {
   return gulp.src(src+'**/scss/*.scss')
   .pipe(sass())
+  .pipe(sass({errLogToConsole: true}))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
   .pipe(rename(function(path) {
     path.dirname += "/../css";
   }))
   .pipe(gulp.dest('render'))
   .pipe(using())
-  // .pipe(browserSync.reload({
-  //   stream: true
-  // }))
+  .pipe(browserSync.reload({stream: true }));
 })
 
 // slim task
