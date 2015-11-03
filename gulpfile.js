@@ -22,7 +22,7 @@ var  src = 'src/';
 gulp.task('browserSync',function () {
   browserSync({
     server: {
-      baseDir: 'render/BV'
+      baseDir: 'render'
     }
   })
 })
@@ -50,7 +50,7 @@ gulp.task('sass', function() {
 
 // slim task
 gulp.task('slim', function () {
-  return gulp.src(src+'**/slim/*.slim')
+  return gulp.src([src+'**/slim/*.slim',src+'*.slim',])
   .pipe(slim({
     pretty: true
   }))
@@ -73,7 +73,7 @@ gulp.task('premailer', function () {
 });
 
 // lancement > fonction watch
-gulp.task( 'build',['browserSync','img','slim','sass','premailer'], function() {
+gulp.task('build',['browserSync','img','slim','sass','premailer'], function() {
   // gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
   gulp.watch(src+'**/slim/*.slim',['slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
