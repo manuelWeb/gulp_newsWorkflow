@@ -7,6 +7,7 @@ var gulp     = require('gulp'),
 browserSync  = require('browser-sync'),
 slim         = require("gulp-slim"),
 sass         = require('gulp-sass'),
+plumber      = require('gulp-plumber'),
 premailer    = require('gulp-premailer'),
 autoprefixer = require('gulp-autoprefixer'),
 rename       = require('gulp-rename'),
@@ -38,6 +39,7 @@ gulp.task('img', function() {
 // sass task
 gulp.task('sass', function() {
   return gulp.src(src+'**/scss/*.scss')
+  .pipe(plumber())
   .pipe(sass())
   .pipe(sass({errLogToConsole: true}))
   .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
@@ -52,6 +54,7 @@ gulp.task('sass', function() {
 // slim task
 gulp.task('slim', function () {
   return gulp.src([src+'*.slim',src+'**/slim/*.slim'])
+  .pipe(plumber())
   .pipe(slim({
     pretty: true
   }))
@@ -79,7 +82,7 @@ gulp.task('premailer', function () {
 // lancement > fonction watch
 gulp.task('build',['browserSync','img','slim','sass','premailer'], function() {
   // gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
-  gulp.watch([src+'*.slim',src+'**/slim/*.slim'],['browserSync','slim','img','premailer']);
+  gulp.watch([src+'*.slim',src+'**/slim/*.slim',src+'**/**/*.slim',src+'**/*.slim'],['browserSync','slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
   // gulp.watch('render/**/slim/*.html',['premailer']);
 });

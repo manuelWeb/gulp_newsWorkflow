@@ -11,13 +11,28 @@ html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
     h2 test BS
     table border="1"
       tr
+        td height="30"
+          table
+            tr
+              td.black
+                | un peu de contenu
+              td.red
+                | un peu de contenu
+              td.yellow
+                | un peu de contenu
+        td
+          table border="0"
+            tr
+              td.black height="30" width="33"
+              td.red width="33"
+              td.yellow width="33"
+      tr
         td align="center"
           p #{testVarlocal}
         td align="center"
           p #{$varGlobale}
       tr
         td colspan="2" align="center"
-          / p #{$var[0]} > #{$var[1]}
           p
            a href== $var[0]
             strong.emphas  == $var[1]
