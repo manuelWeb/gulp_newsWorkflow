@@ -7,14 +7,14 @@ table {
   background-color: black;
 }
 .red {
-  background-color: red;
+  background-color: deeppink;
 }
 .yellow {
   background-color: yellow;
 }
 .testErreur{
   content: "";
-  // monerreur: hargggg!;
+  // monerreur: hargggg!; // cette erreur block le rendu de style.css
 }
 .test {font-family: georgia,serif; font-size: 18px;}
 .emphas {font-size: 28px; color: pink;}

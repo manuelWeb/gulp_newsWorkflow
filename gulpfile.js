@@ -53,7 +53,7 @@ gulp.task('sass', function() {
 
 // slim task
 gulp.task('slim', function () {
-  return gulp.src([src+'*.slim',src+'**/slim/*.slim'])
+  return gulp.src([src+'**/slim/*.slim']) // src+'*.slim', // pas de fichier sur :root
   .pipe(plumber())
   .pipe(slim({
     pretty: true
@@ -82,8 +82,7 @@ gulp.task('premailer', function () {
 
 // lancement > fonction watch
 gulp.task('build',['browserSync','img','slim','sass','premailer'], function() {
-  // gulp.watch( 'browserSync','slim', 'sass', 'imgs' );
-  gulp.watch([src+'*.slim',src+'**/slim/*.slim',src+'**/**/*.slim',src+'**/*.slim'],['browserSync','slim','img','premailer']);
+  // src+'*.slim', ,src+'**/*.slim' // pas de fichier sur :root
+  gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
-  // gulp.watch('render/**/slim/*.html',['premailer']);
 });
