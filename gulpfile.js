@@ -72,9 +72,10 @@ gulp.task('slim', function () {
   // })
 });
 
-// premailer task
+// premailer task // TODO attention si erreur sass > rendu incomplet à gérer
 gulp.task('premailer', function () {
   gulp.src('render/**/*.html')
+  .pipe(plumber())
   .pipe(premailer())
   .pipe(gulp.dest('render'));
 });
