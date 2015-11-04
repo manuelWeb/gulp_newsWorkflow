@@ -24,7 +24,7 @@ var  src = 'src/';
 gulp.task('browserSync',function () {
   browserSync({
     server: {
-      baseDir: 'render/BV'
+      baseDir: 'render/NL'
     }
   })
 })
