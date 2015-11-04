@@ -20,11 +20,11 @@ var  src = 'src/';
 /*=================================
 =            task init            =
 =================================*/
-// browser-sync task
+// browser-sync task !attention il faut un index.html obligatoire
 gulp.task('browserSync',function () {
   browserSync({
     server: {
-      baseDir: 'render'
+      baseDir: 'render/BV'
     }
   })
 })
