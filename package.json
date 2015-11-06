@@ -24,8 +24,10 @@
     "gulp-plumber": "^1.0.1",
     "gulp-premailer": "^0.4.0",
     "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
     "gulp-sass": "^2.0.4",
     "gulp-slim": "^0.3.0",
-    "gulp-using": "0.0.1"
+    "gulp-using": "0.0.1",
+    "rimraf": "^2.4.3"
   }
 }

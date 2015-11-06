@@ -12,6 +12,7 @@ premailer    = require('gulp-premailer'),
 autoprefixer = require('gulp-autoprefixer'),
 rename       = require('gulp-rename'),
 using        = require('gulp-using'),
+rm           = require('gulp-rimraf'),
 clean        = require('gulp-clean');
 // imgmin    = require('gulp-imagemin'),
 
@@ -71,7 +72,6 @@ gulp.task('slim', function () {
   //   console.log('finished');
   // })
 });
-
 // premailer task // TODO attention si erreur sass > rendu incomplet à gérer
 gulp.task('premailer', function () {
   gulp.src('render/**/*.html')
@@ -79,10 +79,26 @@ gulp.task('premailer', function () {
   .pipe(premailer())
   .pipe(gulp.dest('render'));
 });
+// init 7.8 sc...
+gulp.task('init',function () {
+  // gulp.start(['premailer']);
+  gulp.start(['img','slim','sass']);
+  console.log('maintenant !!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  // gulp.start('test');
+});
+// gulp.task('test', function(){
+//   gulp.src('render/**/slim')
+//   .pipe(rm())
+//   .on('finish', function(e) {
+//     gulp.start('premailer')
+//     console.log(e); })
+//   // gulp.run(['premailer']);
+// })
 
 // lancement > fonction watch
-gulp.task('build',['browserSync','img','slim','sass','premailer'], function() {
+gulp.task('dev',['browserSync','img','slim','sass','premailer'], function() {
   // src+'*.slim', ,src+'**/*.slim' // pas de fichier sur :root
   gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
+  gulp.start("init");
 });
