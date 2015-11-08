@@ -53,12 +53,12 @@ gulp.task('sass', function() {
 })
 
 // slim task
-gulp.task('slim', function () {
+gulp.task('slim', function (cb) {
+  // cb('maintenant ?');
+  // cb(console.log('callback?'))
   return gulp.src([src+'**/slim/*.slim']) // src+'*.slim', // pas de fichier sur :root
   .pipe(plumber())
-  .pipe(slim({
-    pretty: true
-  }))
+  .pipe(slim( {pretty: true, indent: '4' })) // cb // {read:false},
   .pipe(using())
   .pipe(gulp.dest('render')) // slim folder
   .pipe(rename(function(path) {
@@ -68,7 +68,8 @@ gulp.task('slim', function () {
   .pipe(browserSync.reload({
     stream: true
   }))
-  // .on('finish', function() {
+  // console.log(cb) // nok
+  // .on('end', function() {
   //   console.log('finished');
   // })
 });
@@ -76,16 +77,23 @@ gulp.task('slim', function () {
 gulp.task('premailer', function () {
   gulp.src('render/**/*.html')
   .pipe(plumber())
-  .pipe(premailer())
+  .pipe(premailer()) //,{read:false}
   .pipe(gulp.dest('render'));
 });
 // init 7.8 sc...
-gulp.task('init',function () {
+gulp.task('init',function (cb) {
   // gulp.start(['premailer']);
-  gulp.start(['img','slim','sass']);
-  console.log('maintenant !!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  // gulp.start('test');
+  gulp.start(['img','slim','sass'])
+  setTimeout(function () {
+    cbtest();
+  },3000)
+  console.log('trop top !!! renvoyer une var depuis task slim callback');
+  // cb(cbtest())
 });
+function cbtest () {
+  gulp.start(['premailer'])
+  // console.log('???');
+}
 // gulp.task('test', function(){
 //   gulp.src('render/**/slim')
 //   .pipe(rm())

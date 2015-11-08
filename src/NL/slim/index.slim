@@ -1,34 +1,37 @@
 == Slim::Template.new('./src/NL/var/var.slim').render
 - testVarlocal = 'ma var local ci dessus dans ce doc';
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+/ doctype transitional
 html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
   head
     meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/
     link href="css/styles.css" rel="stylesheet" type="text/css"/
     title Gulp et ses amis > browserSync/sass/slim/premailer
-
+    css:
+      .t100 {-premailer-width: 100%; -premailer-cellspacing:3; }
   body
     h1 NL > render/NL/html/NL.html &lt;premailer NL est titre noir+bg Gainsboro
     h2 résolution de src/**/scss/*.scss > render/NL+BV/css/*.css
     p les src scss différentes sont bien différentes.
-    table border="1"
-      td height="30"
-        table
-          tr
-            td.red
-              | un peu de contenu
-            td.white
-              | un peu de contenu
-            td.bleu
-              | un peu de contenu
-      td
-        table border="0"
-          tr
-            td.red height="30" width="33"
-            td.white width="33"
-            td.bleu width="33"
-            td valign="middle"
-              | l'autre pays du fromage ?
+    table.t100 border="1"
+      tr
+        td height="30"
+          table
+            tr
+              td.red
+                | un peu de contenu
+              td.white
+                | un peu de contenu
+              td.bleu
+                | un peu de contenu
+        td
+          table border="0"
+            tr
+              td.red height="30" width="33"
+              td.white width="33"
+              td.bleu width="33"
+              td valign="middle"
+                | l'autre pays du fromage ?
       tr
         td align="center"
           p #{testVarlocal}
