@@ -54,8 +54,8 @@ gulp.task('sass', function() {
 
 // slim task
 gulp.task('slim', function (cb) {
-  // cb('maintenant ?');
-  // cb(console.log('callback?'))
+   var slimEnd = false;
+  // cb(cbtest())
   return gulp.src([src+'**/slim/*.slim']) // src+'*.slim', // pas de fichier sur :root
   .pipe(plumber())
   .pipe(slim( {pretty: true, indent: '4' })) // cb // {read:false},
@@ -68,10 +68,10 @@ gulp.task('slim', function (cb) {
   .pipe(browserSync.reload({
     stream: true
   }))
-  // console.log(cb) // nok
-  // .on('end', function() {
-  //   console.log('finished');
-  // })
+  .on('end',function () {
+    slimEnd = true;
+    premailergo(slimEnd);
+  })
 });
 // premailer task // TODO attention si erreur sass > rendu incomplet à gérer
 gulp.task('premailer', function () {
@@ -81,18 +81,27 @@ gulp.task('premailer', function () {
   .pipe(gulp.dest('render'));
 });
 // init 7.8 sc...
-gulp.task('init',function (cb) {
+gulp.task('one',function () {
   // gulp.start(['premailer']);
-  gulp.start(['img','slim','sass'])
-  setTimeout(function () {
-    cbtest();
-  },3000)
-  console.log('trop top !!! renvoyer une var depuis task slim callback');
-  // cb(cbtest())
+  gulp.start(['img','slim','sass']);
 });
+//
+function premailergo (slimEnd) {
+  // body...
+  console.log(slimEnd);
+  if(slimEnd=true){
+    gulp.start(['premailer']);
+  }else{
+    console.log('slim pas prêt.......')
+  }
+};
+// gulp.task('two',function () {
+// });
+gulp.task('init',['one'])
+
 function cbtest () {
-  gulp.start(['premailer'])
-  // console.log('???');
+  // gulp.start(['premailer'])
+  console.log('???');
 }
 // gulp.task('test', function(){
 //   gulp.src('render/**/slim')
