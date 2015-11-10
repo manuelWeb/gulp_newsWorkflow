@@ -33,7 +33,7 @@ gulp.task('browserSync',function () {
 // cp img folder
 gulp.task('img', function() {
   return gulp.src([src+'**/images/*.{png,jpg,gif}'])
-  // .pipe(npm())
+  // .pipe(npm()) // img optimize
   .pipe(gulp.dest('render'))
 })
 
@@ -53,10 +53,9 @@ gulp.task('sass', function() {
 })
 
 // slim task
-gulp.task('slim', function (cb) {
-   var slimEnd = false;
-  // cb(cbtest())
-  return gulp.src([src+'**/slim/*.slim']) // src+'*.slim', // pas de fichier sur :root
+gulp.task('slim', function () {
+  var slimEnd = false;
+  return gulp.src([src+'**/slim/*.slim'])
   .pipe(plumber())
   .pipe(slim( {pretty: true, indent: '4' })) // cb // {read:false},
   .pipe(using())
@@ -73,49 +72,33 @@ gulp.task('slim', function (cb) {
     premailergo(slimEnd);
   })
 });
-// premailer task // TODO attention si erreur sass > rendu incomplet à gérer
+// premailer task // si erreur sass > rendu incomplet à gérer
 gulp.task('premailer', function () {
   gulp.src('render/**/*.html')
   .pipe(plumber())
   .pipe(premailer()) //,{read:false}
   .pipe(gulp.dest('render'));
 });
-// init 7.8 sc...
+// 
 gulp.task('one',function () {
-  // gulp.start(['premailer']);
   gulp.start(['img','slim','sass']);
 });
 //
 function premailergo (slimEnd) {
-  // body...
-  console.log(slimEnd);
+  console.log('slim complete: '+slimEnd);
   if(slimEnd=true){
     gulp.start(['premailer']);
   }else{
     console.log('slim pas prêt.......')
   }
 };
-// gulp.task('two',function () {
-// });
-gulp.task('init',['one'])
 
-function cbtest () {
-  // gulp.start(['premailer'])
-  console.log('???');
-}
-// gulp.task('test', function(){
-//   gulp.src('render/**/slim')
-//   .pipe(rm())
-//   .on('finish', function(e) {
-//     gulp.start('premailer')
-//     console.log(e); })
-//   // gulp.run(['premailer']);
-// })
+gulp.task('build',['one'])
 
 // lancement > fonction watch
 gulp.task('dev',['browserSync','img','slim','sass','premailer'], function() {
   // src+'*.slim', ,src+'**/*.slim' // pas de fichier sur :root
   gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img','premailer']);
   gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
-  gulp.start("init");
+  gulp.start('build');
 });
