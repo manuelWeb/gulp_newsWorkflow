@@ -19,7 +19,7 @@ clean        = require('gulp-clean');
 // src & output
 var  src = 'src/';
 /*=================================
-=            task init            =
+=            task inits            =
 =================================*/
 // browser-sync task !attention il faut un index.html obligatoire
 gulp.task('browserSync',function () {
@@ -53,12 +53,11 @@ gulp.task('sass', function() {
 })
 
 // slim task
-gulp.task('slim', function (cb) {
-   var slimEnd = false;
-  // cb(cbtest())
+gulp.task('slim', function () {
+  var slimEnd = false;
   return gulp.src([src+'**/slim/*.slim']) // src+'*.slim', // pas de fichier sur :root
   .pipe(plumber())
-  .pipe(slim( {pretty: true, indent: '4' })) // cb // {read:false},
+  .pipe(slim( {pretty: true, indent: '4' })) // {read:false},
   .pipe(using())
   .pipe(gulp.dest('render')) // slim folder
   .pipe(rename(function(path) {
@@ -80,7 +79,7 @@ gulp.task('premailer', function () {
   .pipe(premailer()) //,{read:false}
   .pipe(gulp.dest('render'));
 });
-// init 7.8 sc...
+// ...
 gulp.task('one',function () {
   // gulp.start(['premailer']);
   gulp.start(['img','slim','sass']);
@@ -91,31 +90,24 @@ function premailergo (slimEnd) {
   console.log(slimEnd);
   if(slimEnd=true){
     gulp.start(['premailer']);
+    console.log('slim est prêt premailer fait son job.......')
   }else{
     console.log('slim pas prêt.......')
   }
 };
-// gulp.task('two',function () {
-// });
-gulp.task('init',['one'])
+
+gulp.task('build',['one'])
 
 function cbtest () {
   // gulp.start(['premailer'])
   console.log('???');
-}
-// gulp.task('test', function(){
-//   gulp.src('render/**/slim')
-//   .pipe(rm())
-//   .on('finish', function(e) {
-//     gulp.start('premailer')
-//     console.log(e); })
-//   // gulp.run(['premailer']);
-// })
+};
 
 // lancement > fonction watch
-gulp.task('dev',['browserSync','img','slim','sass','premailer'], function() {
+// ,'premailer'
+gulp.task('dev',['browserSync','img','slim','sass'], function() {
   // src+'*.slim', ,src+'**/*.slim' // pas de fichier sur :root
-  gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img','premailer']);
-  gulp.watch(src+'**/scss/*.scss',['sass','premailer','slim']);
-  gulp.start("init");
+  gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img']);//,'premailer'
+  gulp.watch(src+'**/scss/*.scss',['sass','slim']);//,'premailer'
+  gulp.start("build");
 });
