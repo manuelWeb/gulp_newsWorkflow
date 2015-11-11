@@ -33,7 +33,7 @@ gulp.task('browserSync',function () {
 // cp img folder
 gulp.task('img', function() {
   return gulp.src([src+'**/images/*.{png,jpg,gif}'])
-  // .pipe(npm())
+  // .pipe(npm()) // img optimize
   .pipe(gulp.dest('render'))
 })
 
@@ -72,41 +72,40 @@ gulp.task('slim', function () {
     premailergo(slimEnd);
   })
 });
-// premailer task // TODO attention si erreur sass > rendu incomplet à gérer
+// premailer task // si erreur sass > rendu incomplet à gérer
 gulp.task('premailer', function () {
   gulp.src('render/**/*.html')
   .pipe(plumber())
   .pipe(premailer()) //,{read:false}
   .pipe(gulp.dest('render'));
 });
-// ...
+
 gulp.task('one',function () {
-  // gulp.start(['premailer']);
   gulp.start(['img','slim','sass']);
 });
 //
 function premailergo (slimEnd) {
-  // body...
-  console.log(slimEnd);
+  console.log('slim complete: '+slimEnd);
   if(slimEnd=true){
+    console.log('slim prêt premailer fait son job.......')
     gulp.start(['premailer']);
   }else{
     console.log('slim pas prêt.......')
   }
 };
 
-gulp.task('init',['one'])
+gulp.task('build',['one'])
 
 function cbtest () {
-  // gulp.start(['premailer'])
   console.log('???');
 };
+
 
 // lancement > fonction watch
 // ,'premailer'
 gulp.task('dev',['browserSync','img','slim','sass'], function() {
   // src+'*.slim', ,src+'**/*.slim' // pas de fichier sur :root
-  gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img']);//,'premailer'
-  gulp.watch(src+'**/scss/*.scss',['sass','slim']);//,'premailer'
-  gulp.start("init");
+  gulp.watch([src+'**/slim/*.slim',src+'**/**/*.slim'],['browserSync','slim','img']);
+  gulp.watch(src+'**/scss/*.scss',['sass','slim']);
+  gulp.start('build');
 });
